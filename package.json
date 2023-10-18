@@ -9,9 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "13.5.5"
+    "@metamask/onboarding": "^1.0.1",
+    "@walletconnect/universal-provider": "^2.10.2",
+    "@web3-react/core": "^8.2.3",
+    "@web3-react/metamask": "^8.2.4",
+    "@web3-react/walletconnect-v2": "^8.5.1",
+    "bignumber.js": "^9.1.2",
+    "next": "^13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "swr": "^2.2.4",
+    "web3": "^4.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^10",
