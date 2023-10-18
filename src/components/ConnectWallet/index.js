@@ -12,22 +12,18 @@ import { DEFAULT_CHAINID } from "@/config/constants";
 const injected = connectors[0][0];
 
 const ConnectWallet = () => {
-  const [connectWallet, setConnectWallet] = useState(false);
+ 
   const { connector, account, active, activate, chainId } = useWeb3React();
-  const [activatingConnector, setActivatingConnector] = useState();
   const onboarding = useRef();
 
   const onConnectToMetamaskFunc = () => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-      setActivatingConnector(injected);
       Promise.resolve(injected.activate(DEFAULT_CHAINID)).catch((e) => {
         injected.resetState();
-        setActivatingConnector();
         localStorage.removeItem("connectedWallet");
         console.debug("Failed to connect to metamask");
       });
       localStorage.setItem("connectedWallet", "metamask");
-      setConnectWallet(false);
     } else {
       onboarding.current.startOnboarding();
     }
@@ -46,12 +42,6 @@ const ConnectWallet = () => {
       onboarding.current = new MetaMaskOnboarding();
     }
   }, []);
-
-  useEffect(() => {
-    if (activatingConnector && activatingConnector === connector) {
-      setActivatingConnector(undefined);
-    }
-  }, [activatingConnector, connector]);
 
   const logout = () => {
     if (connector?.deactivate) {
